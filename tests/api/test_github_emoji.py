@@ -4,7 +4,7 @@ import pytest
 def test_emoji_1():
     r = requests.get(
         url = "https://api.github.com/emojis",
-        # params = {
+        # query params = {
         #     # 'q' = "Sergeii"
         # },
         headers = {
@@ -29,8 +29,8 @@ def test_emoji_1():
 
 
 @pytest.fixture(scope='function')
-def list_of_emojis(git_hub_api_client):
-    yield git_hub_api_client.get_emojis()
+def list_of_emojis(fixture_git_hub_api_client):
+    yield fixture_git_hub_api_client.get_emojis()
 
 
 def test_emoji_2(list_of_emojis):    

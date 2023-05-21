@@ -1,4 +1,6 @@
+from src.config.config import Config
 import requests
+
 
 class GitHubAPIClient:
 
@@ -16,7 +18,7 @@ class GitHubAPIClient:
             Get  list of available emojis in github system
         """
         r = requests.get(
-            url = "https://api.github.com/emojis",
+            url = f"https:://{Config.get_property('TARGET')}/emojis",
             # params = {
             #     # 'q' = "Sergeii"
             # },
