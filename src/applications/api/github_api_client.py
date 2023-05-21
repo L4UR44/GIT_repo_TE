@@ -7,8 +7,8 @@ class GitHubAPIClient:
     def __init__(self) -> None:
         pass
 
-    def login(self):
-        print("DO LOGIN")
+    def login(self, username, password):
+        print(f"DO LOGIN for {username} and {password}")
 
     def logout (self):
         print("DO LOGOUT")
@@ -38,4 +38,35 @@ class GitHubAPIClient:
         list_of_emojis = body.keys()
 
         return list_of_emojis
+    
+    def search_topics(self, topics):
+        """
+        Search topic by a rtopics param
+        Return list of topics
+        """
+        # sendgin the request
+        r = requests.get(
+            url=f"{Config.get_property('API_BASE_URL')}/search/topics",
+            headers={
+                "Accept": "application/vnd.github+json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+            # add query parameter
+            params={
+                'q': topics,
+            },
+        )
+        print("Get Search Topics Response Status Code:", r.status_code)
+
+        # throw an error if response is not 2xx and 3xx
+        # optional
+        r.raise_for_status()
+        
+        # get body
+        body = r.json()
+
+        body_topics = [x['name'] for x in body['items']]
+        
+        return body_topics
+
        

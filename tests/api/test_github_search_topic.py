@@ -1,27 +1,26 @@
-# import pytest
-# import requests
+import pytest
+import requests
 
 
-# def test_search_for_topic():
-#      r = requests.get(
-#         # url
-#         url = https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc
+def test_search_topics_positive(fixture_git_hub_api_client):
+    """
+    positive parameters
 
-#         # query parameters
-#         parameters = {
-#             #'q' = 'Q' 
-#             'q' = "tetris+language:assembly&sort=stars&order=desc"
-#         }
-        
-#         # headers
-#         headers = {
-#             "Accept" : "application/vnd.github+json"
-#             "X-GitHub-Api-Version" : "2022-11-28"
-#         }
+    """
 
-#         # body option1
-#         json={},
+    topics = "ruby"
 
-#         # body option2
-#         data = {}
-#         )
+    topics_list = fixture_git_hub_api_client.search_topics(topics)
+    assert topics in topics_list
+
+
+
+def test_search_topics_negative(fixture_git_hub_api_client):
+    """
+    negative parameters
+    """
+
+    topics = "jkljkljklkljkl"
+
+    topics_list = fixture_git_hub_api_client.search_topics(topics)
+    assert topics not in topics_list
