@@ -20,7 +20,7 @@ class GitHubAPIClient:
         r = requests.get(
             url = f"https:://{Config.get_property('TARGET')}/emojis",
             # params = {
-            #     # 'q' = "Sergeii"
+            #     # 'q' = "jkljkl"
             # },
             headers = {
             "Accept" : "application/vnd.github+json",
@@ -65,7 +65,7 @@ class GitHubAPIClient:
         # get body
         body = r.json()
 
-        body_topics = [x['name'] for x in body['items']]
+        body_topics = [x['name'] for x in body['items']]  # list coprehention
         
         return body_topics
 

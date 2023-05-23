@@ -11,6 +11,7 @@ def test_search_repo_positive(fixture_git_hub_api_client):
     # Validate the search returns results
     assert repo_name in repos_list
 
+
 def test_search_repo_negative(fixture_git_hub_api_client):
     """
     This test seach for existing repo on GitHub
@@ -23,6 +24,7 @@ def test_search_repo_negative(fixture_git_hub_api_client):
     
     # Validate the search returns results
     assert repo_name not in repos_list
+
 
 def test_search_millions_results(fixture_git_hub_api_client):
     """
